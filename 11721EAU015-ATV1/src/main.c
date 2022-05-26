@@ -2,6 +2,9 @@
 
 int main (int argc, char *argv[])
 {
+    /* Habilita clock GPIOC*/
+    
+    /* */
     while(1){};
 
 
