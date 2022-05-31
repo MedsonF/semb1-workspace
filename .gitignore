@@ -1,0 +1,6 @@
+/home/medson/semb1-workspace/lab-02/
+/home/medson/semb1-workspace/lab-03/
+
+*.bin
+*.elf
+*.o
