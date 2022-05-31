@@ -34,5 +34,5 @@ SECTIONS
         *(.bss)
         . = ALIGN(4);
         _ebss = .;
-    }> SRA
+    }> SRAM
 }
