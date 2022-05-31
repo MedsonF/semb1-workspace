@@ -1,5 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
+typedef __UINT8_TYPE__ uint8_t;
+typedef __uint32_t uint32_t;
 
 #define SRAM_START  0x20000000U                     // Inicio da SRAM CORTEX-M 
 #define SRAM_SIZE   (64U * 1024U)                   // Tam. SRAM STM32F401 64K 
