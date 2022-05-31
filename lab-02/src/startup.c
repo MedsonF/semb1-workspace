@@ -1,11 +1,12 @@
-#include <stdlib.h>
-#include <stdio.h>
+typedef unsigned int __uint32_t;
+typedef __UINT8_TYPE__ uint8_t;
+typedef __uint32_t uint32_t;
 
-#define SRAM_START  0x20000000U                     // Inicio da SRAM CORTEX-M 
-#define SRAM_SIZE   (64U * 1024U)                   // Tam. SRAM STM32F401 64K 
-#define SRAM_END    ((SRAM_START) + (SRAM_SIZE))    // Final da SRAM STM32F401 
+#define SRAM_START  0x20000000U                     /* Inicio da SRAM CORTEX-M */
+#define SRAM_SIZE   (64U * 1024U)                   /* Tam. SRAM STM32F401 64K */
+#define SRAM_END    ((SRAM_START) + (SRAM_SIZE))    /* Final da SRAM STM32F401 */
 
-#define STACK_START SRAM_END                        // Inicio da Stack 
+#define STACK_START SRAM_END                        /* Inicio da Stack */
 
 int main (void);
 
@@ -20,13 +21,14 @@ void debugmon_handler   (void) __attribute__ ((weak, alias("default_handler")));
 void pendsv_handler     (void) __attribute__ ((weak, alias("default_handler")));
 void systick_handler    (void) __attribute__ ((weak, alias("default_handler")));
 
-extern uint32_t _sdata;                         // Inicio da secao .data 
-extern uint32_t _edata;                         // Fim da secao .data 
-extern uint32_t _la_data;                       // Endereco de carga na RAM da secao .data 
+extern uint32_t _sdata;                         /* Inicio da secao .data */
+extern uint32_t _edata;                         /* Fim da secao .data */
+extern uint32_t _la_data;                       /* Endereco de carga na RAM da secao .data */
 
-extern uint32_t _sbss;                          // Inicio da secao .bss 
-extern uint32_t _ebss;                          // Fim da secao .bss 
-extern uint32_t _etext;                         // Fim da secao .text 
+extern uint32_t _sbss;                          /* Inicio da secao .bss */
+extern uint32_t _ebss;                          /* Fim da secao .bss */
+extern uint32_t _stext;                         /* Inicio da secao .text */
+extern uint32_t _etext;                         /* Fim da secao .text */
 
 uint32_t vectors[] __attribute__((section(".isr_vectors"))) =
 {
@@ -52,18 +54,18 @@ void reset_handler()
 {
     uint32_t i;
     
-    // Copia a secao .data para a RAM 
+    /* Copia a secao .data para a RAM */
 
     uint32_t size = (uint32_t)&_edata - (uint32_t)&_sdata;
-    uint8_t *pDst = (uint8_t*)&_sdata;          // SRAM 
-    uint8_t *pSrc = (uint8_t*)&_etext;          // FLASH 
+    uint8_t *pDst = (uint8_t*)&_sdata;          /* SRAM */
+    uint8_t *pSrc = (uint8_t*)&_etext;          /* FLASH */
 
     for(i =0; i < size; i++)
     {
         *pDst++ = *pSrc++;
     }
 
-    // Preenche a secao .bss com zero 
+    /* Preenche a secao .bss com zero */
     
     size = (uint32_t)&_ebss - (uint32_t)&_sbss;
     pDst = (uint8_t*)&_sbss;
@@ -73,7 +75,7 @@ void reset_handler()
         *pDst++ =0;
     }
 
-    // Chama a funcao main() 
+    /* Chama a funcao main() */
 
     main();
 }

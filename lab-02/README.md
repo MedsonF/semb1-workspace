@@ -27,8 +27,5 @@ Define os vetores de endereços de rotinas de tratamentos, que são chamados par
 Define variáveis que serão chamadas de arquilo linker script posteriormente. 
 organiza os endereços de rotina na memoria Ram.
 
-    smt32f401-rom.ld - arquivo linker dos arquivos annteriores, define endereços de memória e onde 
-cada variável declarada deve ser alocada.
-
     Makefile - Automatiza a compilação de arquivos .c gerando arquivos objetos
 executáveis. 
