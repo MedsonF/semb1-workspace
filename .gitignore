@@ -1,5 +1,5 @@
-/semb1-workspace/lab-02/
-/semb1-workspace/lab-03/
+.lab-02/
+.lab-03/
 
 *.bin
 *.elf
