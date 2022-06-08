@@ -22,7 +22,7 @@
 #define STM32_RCC_AHB1ENR_GPIOCEN       (1 << 2)  //bit 2 porta C clock
 
         // GPIO MODE REGISTER
-
+#define STM32_BOOT0_OUTPUT         			// output botao        
 #define STM32_GPIO_MODER_INPUT     (0)     // input pino GPIO
 #define STM32_GPIO_MODER_OUTPUT    (1)     // general output mode
 #define STM32_GPIO_MODER_ALT       (2)     // alternative mode
@@ -41,6 +41,7 @@
 
         // GPIO PULL_UP/PULL_DOWN REGISTER
 
+#define STM32_BOOT0_PULLUP         			// pull up
 #define STM32_GPIO_PUPDR_NONE       (0)     // no pull-up
 #define STM32_GPIO_PUPDR_PULLUP     (1)     // pull-up
 #define STM32_GPIO_PUPDR_PULLDOWN   (2)     //pull-down
