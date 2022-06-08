@@ -1,7 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-typedef __UINT8_TYPE__ uint8_t;
-typedef __uint32_t uint32_t;
+#include <stdint.h>
 
 #define STM32_RCC_BASE  0x40023800      // Reset and clock control RCC
 
