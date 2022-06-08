@@ -28,6 +28,7 @@
 #define STM32_GPIO_MODER_ALT       (2)     // alternative mode
 #define STM32_GPIO_MODER_ANALOG    (3)     // analog mode
 
+#define STM32_BOOT0_SHIFT
 #define STM32_GPIO_MODER13_SHIFT   (26)    
 #define STM32_GPIO_MODER13_MASK    (3 << STM32_GPIO_MODER13_SHIFT)
 
@@ -46,6 +47,7 @@
 #define STM32_GPIO_PUPDR_PULLUP     (1)     // pull-up
 #define STM32_GPIO_PUPDR_PULLDOWN   (2)     //pull-down
 
+#define STM32_BOOT0_PULLUP_SHIFT
 #define STM32_GPIO_PUPDR13_SHIFT    (26)    
 #define STM32_GPIO_PUPDR13_MASK     (3 << STM32_GPIO_PUPDR13_SHIFT)
 
@@ -59,6 +61,7 @@ static const char     version [] = {'V', '1', '.', '0'};
 int main (int argc, char *argv[])
 {
     uint32_t reg;
+	uint32_t bot;
 
     // Ponteiros para registradores 
 
@@ -91,6 +94,13 @@ int main (int argc, char *argv[])
     reg |= (STM32_GPIO_PUPDR_NONE << STM32_GPIO_PUPDR13_SHIFT);
     *pGPIOC_PUPDR = reg;
 
+	bot = *pGPIOC_MODER;
+	bot |= (STM32_BOOT0_OUTPUT << STM32_BOOT0_SHIFT);
+    *pGPIOC_MODER = bot;
+
+	bot = *pGPIOC_PUPDR;
+    bot |= (STM32_BOOT0_PULLUP << STM32_BOOT0_PULLUP_SHIFT);
+    *pGPIOC_PUPDR = bot;
 
     while(1)
     {
