@@ -4,3 +4,4 @@ lab-03/
 *.bin
 *.elf
 *.o
+*.metadata
