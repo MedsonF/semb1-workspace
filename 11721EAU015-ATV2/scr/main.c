@@ -73,8 +73,12 @@ int main (int argc, char *argv[])
     uint32_t pin;
     uint32_t port;
 
+    uint32_t pin_mode;
+
     pin = STM32_GPIO_PIN_MASK >> STM32_GPIO_PIN_SHIFT;
     port = STM32_GPIO_PORT_MASK >> STM32_GPIO_PORT_SHIFT;
+
+    pin_mode = STM32_GPIO_MODER_INPUT;
 
     // Ponteiros para registradores 
 
@@ -83,6 +87,7 @@ int main (int argc, char *argv[])
     uint32_t *pGPIOC_OTYPER = (uint32_t *)STM32_GPIOC_OTYPER;
     uint32_t *pGPIOC_PUPDR = (uint32_t *)STM32_GPIOC_PUPDR;
     uint32_t *pGPIOC_BSRR = (uint32_t *)STM32_GPIOC_BSRR;
+    uint32_t *pGPIOC_A0   = (uint32_t *)STM32_GPIO_PORTA;
 
     // Habilita o clock no GPIOC
 
@@ -108,8 +113,8 @@ int main (int argc, char *argv[])
     *pGPIOC_PUPDR = reg;
 
 	bot = *pGPIOC_MODER;
-	bot |= (STM32_BOOT0_OUTPUT << STM32_BOOT0_SHIFT);
-    *pGPIOC_MODER = bot;
+	bot |= (STM32_GPIO_PORTA << STM32_GPIO_PORT_SHIFT);
+    *pGPIOC_A0 = bot;
 
 	bot = *pGPIOC_PUPDR;
     bot |= (STM32_BOOT0_PULLUP << STM32_BOOT0_PULLUP_SHIFT);
