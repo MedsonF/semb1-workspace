@@ -22,15 +22,21 @@
 #define STM32_RCC_AHB1ENR_GPIOCEN       (1 << 2)  //bit 2 porta C clock
 
         // GPIO MODE REGISTER
-#define STM32_BOOT0_OUTPUT         			// output botao        
+     
 #define STM32_GPIO_MODER_INPUT     (0)     // input pino GPIO
 #define STM32_GPIO_MODER_OUTPUT    (1)     // general output mode
 #define STM32_GPIO_MODER_ALT       (2)     // alternative mode
 #define STM32_GPIO_MODER_ANALOG    (3)     // analog mode
 
-#define STM32_BOOT0_SHIFT
+#define STM32_GPIO_PORT_SHIFT      4
+#define STM32_GPIO_PORT_MASK      (15 << STM32_GPIO_PINA_SHIFT)
+#define STM32_GPIO_PIN_SHIFT      0
+#define STM32_GPIO_PIN_MASK      (15 << STM32_GPIO_PINA_SHIFT)
 #define STM32_GPIO_MODER13_SHIFT   (26)    
 #define STM32_GPIO_MODER13_MASK    (3 << STM32_GPIO_MODER13_SHIFT)
+
+#define STM32_GPIO_PORTA            (0 << STM32_GPIO_PORT_SHIFT)
+#define STM32_GPIO_PIN0            (0 << STM32_GPIO_PIN_SHIFT)
 
         // GPIO OUTPUT REGISTER
 
@@ -58,10 +64,17 @@
 
 static uint32_t led_status;
 static const char     version [] = {'V', '1', '.', '0'};
+
+
 int main (int argc, char *argv[])
 {
     uint32_t reg;
 	uint32_t bot;
+    uint32_t pin;
+    uint32_t port;
+
+    pin = STM32_GPIO_PIN_MASK >> STM32_GPIO_PIN_SHIFT;
+    port = STM32_GPIO_PORT_MASK >> STM32_GPIO_PORT_SHIFT;
 
     // Ponteiros para registradores 
 
